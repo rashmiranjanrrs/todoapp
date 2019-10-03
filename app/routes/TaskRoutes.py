@@ -26,5 +26,13 @@ def deletetask():
 def alltasks():
     return TaskController.alltasks()
 
+@taskroutes.errorhandler(500)
+def error(e):
+    return "Put the information properly !! 500 error"
+
+@taskroutes.errorhandler(400)
+def error(e):
+    return "check your input data properly !! 400 error"
+
 
 
