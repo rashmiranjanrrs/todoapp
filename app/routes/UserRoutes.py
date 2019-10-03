@@ -9,4 +9,8 @@ userroutes = Blueprint("userroutes", __name__)
 @userroutes.route('/signup', methods=['POST'])
 def signup():
     return UserController.signup()
-  # You can call your controller method here
+
+@userroutes.errorhandler(400)
+def error(e):
+    return "check your input data properly!! 400 error"
+    
