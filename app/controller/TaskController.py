@@ -14,7 +14,7 @@ class TaskController:
         task = Task(content, user=User.query.filter_by(username=auth.auth.username()).first())
         Task.addtask(task)
         return jsonify({
-            'username': auth.username(),
+            'username': auth.auth.username(),
             'task-id': task.id,
             'content': task.content
         })
