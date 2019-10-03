@@ -6,9 +6,7 @@
 # Call the related CRUD operation method from your USER model to perform db queries
 from flask import request, jsonify
 from app.model.User import User
-from flask_httpauth import HTTPBasicAuth
 
-auth = HTTPBasicAuth()
 
 class UserController:
 
