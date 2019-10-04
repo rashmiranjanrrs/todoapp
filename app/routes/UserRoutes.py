@@ -16,7 +16,7 @@ def signup():
 
 @userroutes.errorhandler(500)
 def error(e):
-    return "Input all the data(username,password,email)!! 500 error"
+    return "Input all the data(username,password,email)!! 500 error", 500
 
 @userroutes.errorhandler(400)
 def error(e):
