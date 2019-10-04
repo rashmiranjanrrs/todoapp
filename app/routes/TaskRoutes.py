@@ -5,21 +5,32 @@ from flask import Blueprint
 
 taskroutes = Blueprint("taskroutes", __name__)
 
-
 @taskroutes.route('/addtask', methods=['POST'])
 @auth.auth.login_required
 def addtask():
-    return TaskController.addtask()
+    try:
+        if request.get_json()["content"]:
+            return TaskController.addtask()
+    except KeyError:
+        return jsonify({"error":"please add content"}), 500
 
 @taskroutes.route('/taskdone', methods=['GET'])
 @auth.auth.login_required
 def markdone():
-    return TaskController.markdone()
+    try:
+        if request.get_json()["task_id"]:
+            return TaskController.markdone()
+    except KeyError:
+        return jsonify({"error":"please add task_id"}), 500
 
 @taskroutes.route('/deletetask', methods=['POST'])
 @auth.auth.login_required
 def deletetask():
-    return TaskController.deletetask()
+    try:
+        if request.get_json()["task_id"]:
+            return TaskController.deletetask()
+    except KeyError:
+        return jsonify({"error": "please add task_id"}), 500
 
 @taskroutes.route('/showtasks', methods=['GET'])
 @auth.auth.login_required
@@ -27,12 +38,11 @@ def alltasks():
     return TaskController.alltasks()
 
 @taskroutes.errorhandler(500)
-def error(e):
-    return "Put the information properly !! 500 error"
+def error1(e):
+    return "Put the information properly !! 500 error", 500
 
 @taskroutes.errorhandler(400)
-def error(e):
-    return "check your input data properly !! 400 error"
-
+def error2(e):
+    return "check your input properly !! 400 error", 400
 
 
