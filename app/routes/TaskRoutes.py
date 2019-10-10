@@ -1,6 +1,7 @@
 from app.controller.TaskController import TaskController
 from app.controller import auth
 from flask import Blueprint
+from app import cache
 
 
 taskroutes = Blueprint("taskroutes", __name__)
@@ -33,6 +34,7 @@ def deletetask():
         return jsonify({"error": "please add task_id"}), 500
 
 @taskroutes.route('/showtasks', methods=['GET'])
+@cach.cached(timeout=30)
 @auth.auth.login_required
 def alltasks():
     return TaskController.alltasks()
