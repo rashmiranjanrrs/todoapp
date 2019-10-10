@@ -1,9 +1,11 @@
 from flask import Flask
+from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 # local imports
 from config import app_config
 
 db = SQLAlchemy()
+cache = Cache(config={'CACHE_TYPE': 'simple'})
 
 
 def create_app(config_name):
@@ -12,6 +14,7 @@ def create_app(config_name):
     app.config.from_pyfile('config.py')
 
     db.init_app(app)
+    cache.init_app(app)
 
     from .routes.TaskRoutes import taskroutes as taskroutes_blueprint
     app.register_blueprint(taskroutes_blueprint)
