@@ -35,6 +35,7 @@ class TaskController:
         task.done = True
         task.end_date = datetime.datetime.now()
         Task.markdone(task.end_date)
+        cache.flushall()
         return jsonify({
             'content': task.content,
             'add_date': task.add_date,
