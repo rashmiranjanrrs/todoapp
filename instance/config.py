@@ -3,5 +3,6 @@
 
 import os
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+SQLALCHEMY_DATABASE_URI = 'mysql://root:passwor@localhost/root'
+                           #mysql://username:password@server/database_name
 SQLALCHEMY_TRACK_MODIFICATIONS = True
