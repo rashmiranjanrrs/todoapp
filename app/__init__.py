@@ -2,8 +2,10 @@ from flask import Flask
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 # local imports
+import pymysql #MYSQL-python is not working for me
 from config import app_config
 
+pymysql.install_as_MySQLdb()
 db = SQLAlchemy()
 cache = Cache(config={'CACHE_TYPE': 'simple'})
 
