@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 import pymysql #MYSQL-python is not working for me
 from config import app_config
 
-pymysql.install_as_MySQLdb()
+pymysql.install_as_MySQLdb() #for avioding MySQLdb error
 db = SQLAlchemy()
 cache = Cache(config={'CACHE_TYPE': 'simple'})
 
